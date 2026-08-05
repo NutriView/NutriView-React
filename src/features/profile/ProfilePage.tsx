@@ -79,7 +79,7 @@ export function ProfilePage() {
               min={0}
               error={errors.dailyCalorieGoal?.message}
             />
-            <SimpleGrid cols={3}>
+            <SimpleGrid cols={{ base: 2, sm: 3 }}>
               <NumberField control={control} name="weight" label="Weight (kg)" min={0} />
               <NumberField control={control} name="height" label="Height (cm)" min={0} />
               <NumberField control={control} name="age" label="Age" min={0} />
