@@ -35,7 +35,7 @@ export default defineConfig({
       // Same-origin in dev: the browser calls /api and Vite forwards to the API,
       // so CORS is not exercised during development.
       '/api': {
-        target: 'http://localhost:5183',
+        target: 'http://localhost:5010',
         changeOrigin: true,
       },
     },
