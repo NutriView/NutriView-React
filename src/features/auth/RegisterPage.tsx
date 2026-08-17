@@ -22,7 +22,7 @@ import { ApiError } from '../../api/http';
 
 export function RegisterPage() {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setSession } = useAuth();
   const {
     register,
     control,
@@ -35,8 +35,8 @@ export function RegisterPage() {
 
   const mutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: (user) => {
-      setUser(user);
+    onSuccess: (auth) => {
+      setSession(auth);
       navigate('/', { replace: true });
     },
     onError: (error) => {

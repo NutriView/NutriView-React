@@ -35,6 +35,13 @@ export interface UserResponse {
   nutritionDailyGoal?: NutritionValueDTO | null;
 }
 
+/** Returned by POST /User/register and POST /User/login. */
+export interface AuthResponse {
+  token: string;
+  expiresAt: string;
+  user: UserResponse;
+}
+
 export interface FoodResponse {
   foodId: string;
   name: string;

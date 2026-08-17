@@ -44,7 +44,7 @@ export function ReminderFormModal({ opened, onClose, userId, reminder }: Props) 
       );
     } else {
       createReminder.mutate(
-        { userId, mealId: values.mealId, timeOfDay, isActive: values.isActive },
+        { mealId: values.mealId, timeOfDay, isActive: values.isActive },
         { onSuccess: onClose },
       );
     }

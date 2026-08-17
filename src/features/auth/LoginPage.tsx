@@ -21,7 +21,7 @@ import { ApiError } from '../../api/http';
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setSession } = useAuth();
   const {
     register,
     handleSubmit,
@@ -30,8 +30,8 @@ export function LoginPage() {
 
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: (user) => {
-      setUser(user);
+    onSuccess: (auth) => {
+      setSession(auth);
       navigate('/', { replace: true });
     },
     onError: (error) => {

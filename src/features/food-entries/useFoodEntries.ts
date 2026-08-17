@@ -2,14 +2,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
 import type { FoodEntryCreateDTO, FoodEntryResponse } from '../../api/types';
 import { ApiError } from '../../api/http';
-import { createEntry, deleteEntry, getEntriesByUser } from './foodEntries.api';
+import { createEntry, deleteEntry, getMyEntries } from './foodEntries.api';
 
+// The API scopes entries to the token; userId only keeps caches apart per user.
 export const foodEntriesKey = (userId: string) => ['foodEntries', userId] as const;
 
 export function useFoodEntries(userId: string) {
   return useQuery({
     queryKey: foodEntriesKey(userId),
-    queryFn: () => getEntriesByUser(userId),
+    queryFn: getMyEntries,
   });
 }
 

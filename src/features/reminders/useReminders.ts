@@ -9,16 +9,17 @@ import { ApiError } from '../../api/http';
 import {
   createReminder,
   deleteReminder,
-  getReminders,
+  getMyReminders,
   updateReminder,
 } from './reminders.api';
 
+// The API scopes reminders to the token; userId only keeps caches apart per user.
 export const remindersKey = (userId: string) => ['reminders', userId] as const;
 
 export function useReminders(userId: string) {
   return useQuery({
     queryKey: remindersKey(userId),
-    queryFn: () => getReminders(userId),
+    queryFn: getMyReminders,
   });
 }
 

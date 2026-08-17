@@ -5,8 +5,8 @@ import type {
   FoodEntryUpdateDTO,
 } from '../../api/types';
 
-export function getEntriesByUser(userId: string): Promise<FoodEntryResponse[]> {
-  return http.get<FoodEntryResponse[]>(`/FoodEntry/user/${userId}`);
+export function getMyEntries(): Promise<FoodEntryResponse[]> {
+  return http.get<FoodEntryResponse[]>('/FoodEntry/me');
 }
 
 export function createEntry(dto: FoodEntryCreateDTO): Promise<FoodEntryResponse> {

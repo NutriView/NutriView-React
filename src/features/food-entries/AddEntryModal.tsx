@@ -49,7 +49,6 @@ export function AddEntryModal({ opened, onClose, userId, mealId, mealName, day }
   function onSubmit(values: AddEntryForm) {
     createEntry.mutate(
       {
-        userId,
         foodId: values.foodId,
         mealId,
         quantity: values.quantity,

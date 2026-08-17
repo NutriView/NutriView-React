@@ -5,8 +5,8 @@ import type {
   ReminderUpdateDTO,
 } from '../../api/types';
 
-export function getReminders(userId: string): Promise<ReminderResponse[]> {
-  return http.get<ReminderResponse[]>(`/Reminder/user/${userId}`);
+export function getMyReminders(): Promise<ReminderResponse[]> {
+  return http.get<ReminderResponse[]>('/Reminder/me');
 }
 
 export function createReminder(dto: ReminderCreateDTO): Promise<ReminderResponse> {

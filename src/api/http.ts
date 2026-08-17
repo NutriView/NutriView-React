@@ -1,4 +1,16 @@
+import { readSession } from './session';
+
 const API_BASE = import.meta.env.VITE_API_BASE ?? '/api';
+
+let unauthorizedHandler: (() => void) | null = null;
+
+/**
+ * Registered by AuthProvider. Fires when the API rejects a token we actually
+ * sent, so an expired session is dropped instead of silently failing requests.
+ */
+export function setUnauthorizedHandler(handler: (() => void) | null): void {
+  unauthorizedHandler = handler;
+}
 
 export class ApiError extends Error {
   status: number;
@@ -45,11 +57,23 @@ async function parseError(res: Response): Promise<ApiError> {
 }
 
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
+  const token = readSession()?.token;
+
+  const headers: Record<string, string> = {};
+  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   const res = await fetch(`${API_BASE}${path}`, {
     method,
-    headers: body !== undefined ? { 'Content-Type': 'application/json' } : undefined,
+    headers,
     body: body !== undefined ? JSON.stringify(body) : undefined,
   });
+
+  // Only a rejected token means the session died — a 401 from /login with no
+  // token attached is just bad credentials.
+  if (res.status === 401 && token) {
+    unauthorizedHandler?.();
+  }
 
   if (!res.ok) {
     throw await parseError(res);

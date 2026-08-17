@@ -139,7 +139,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/FoodEntry/user/{userId}": {
+    "/api/FoodEntry/me": {
         parameters: {
             query?: never;
             header?: never;
@@ -150,9 +150,7 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    userId: string;
-                };
+                path?: never;
                 cookie?: never;
             };
             requestBody?: never;
@@ -292,7 +290,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Reminder/user/{userId}": {
+    "/api/Reminder/me": {
         parameters: {
             query?: never;
             header?: never;
@@ -303,9 +301,7 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    userId: string;
-                };
+                path?: never;
                 cookie?: never;
             };
             requestBody?: never;
@@ -445,7 +441,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/UploadedImage": {
+    "/api/UploadedImage/me": {
         parameters: {
             query?: never;
             header?: never;
@@ -471,30 +467,7 @@ export interface paths {
             };
         };
         put?: never;
-        post: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: {
-                content: {
-                    "application/json": components["schemas"]["UploadedImageCreateDTO"];
-                    "text/json": components["schemas"]["UploadedImageCreateDTO"];
-                    "application/*+json": components["schemas"]["UploadedImageCreateDTO"];
-                };
-            };
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -580,21 +553,29 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/User": {
+    "/api/UploadedImage": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: {
+        get?: never;
+        put?: never;
+        post: {
             parameters: {
                 query?: never;
                 header?: never;
                 path?: never;
                 cookie?: never;
             };
-            requestBody?: never;
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["UploadedImageCreateDTO"];
+                    "text/json": components["schemas"]["UploadedImageCreateDTO"];
+                    "application/*+json": components["schemas"]["UploadedImageCreateDTO"];
+                };
+            };
             responses: {
                 /** @description OK */
                 200: {
@@ -605,6 +586,20 @@ export interface paths {
                 };
             };
         };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/User/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
         put?: never;
         post: {
             parameters: {
@@ -631,85 +626,6 @@ export interface paths {
             };
         };
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/User/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path: {
-                    id: string;
-                };
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path: {
-                    id: string;
-                };
-                cookie?: never;
-            };
-            requestBody?: {
-                content: {
-                    "application/json": components["schemas"]["UserUpdateDTO"];
-                    "text/json": components["schemas"]["UserUpdateDTO"];
-                    "application/*+json": components["schemas"]["UserUpdateDTO"];
-                };
-            };
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        post?: never;
-        delete: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path: {
-                    id: string;
-                };
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
         options?: never;
         head?: never;
         patch?: never;
@@ -754,7 +670,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/User/{id}/nutrition-goal": {
+    "/api/User/me": {
         parameters: {
             query?: never;
             header?: never;
@@ -765,9 +681,7 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    id: string;
-                };
+                path?: never;
                 cookie?: never;
             };
             requestBody?: never;
@@ -785,9 +699,80 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    id: string;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["UserUpdateDTO"];
+                    "text/json": components["schemas"]["UserUpdateDTO"];
+                    "application/*+json": components["schemas"]["UserUpdateDTO"];
                 };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/User/me/nutrition-goal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
                 cookie?: never;
             };
             requestBody?: {
@@ -825,8 +810,6 @@ export interface components {
             nutrition: components["schemas"]["NutritionValueDTO"];
         };
         FoodEntryCreateDTO: {
-            /** Format: uuid */
-            userId: string;
             /** Format: uuid */
             foodId: string;
             /** Format: int32 */
@@ -880,8 +863,6 @@ export interface components {
             measurementBase?: components["schemas"]["MeasurementBaseEnum"];
         };
         ReminderCreateDTO: {
-            /** Format: uuid */
-            userId: string;
             /** Format: int32 */
             mealId: number;
             /** Format: date-span */
@@ -896,8 +877,6 @@ export interface components {
             isActive?: boolean;
         };
         UploadedImageCreateDTO: {
-            /** Format: uuid */
-            userId: string;
             filePath: string;
         };
         UploadedImageUpdateDTO: {
